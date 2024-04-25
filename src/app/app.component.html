@@ -8,16 +8,73 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <style>
-  
+
 </style>
 
-<main>
-  <div class="mainLine">
-    <h1>Reactive forms</h1>
+<main class="main">
+  <div class="container-fluid">
+    <form [formGroup]="registartionForm" class="mainLine">
+      <div class="mainLine">
+        <h1>Reactive forms</h1>
+      </div>
+      <div class="form-group mainLine">
+        <label class="bold">Username</label>
+        <input type="text" name="userName" formControlName="userName" placeholder="User Name"
+          class="form-control  inputWidth" [class.is-invalid]="userName?.invalid &&  userName?.touched">
+        <small [class.d-none]="first['userName'].untouched || first['userName'].valid" class="text-danger">Username is
+          required.</small>
+      </div>
+
+      <div class="form-group mainLine">
+        <label class="bold">Password</label>
+        <input type="password" name="Password" formControlName="Password" placeholder="Password"
+          class="form-control  inputWidth" [class.is-invalid]="first['Password'].invalid &&  first['Password'].touched">
+        <div *ngIf="first['Password'].invalid && first['Password'].touched">
+          <small *ngIf="first['Password'].errors && first['Password'].errors.required" class="text-danger">Password is
+            required.</small>
+          <small *ngIf="first['Password'].errors && first['Password'].errors.minlength" class="text-danger">Min length
+            is required</small>
+        </div>
+
+      </div>
+
+      <div class="form-group mainLine">
+        <label class="bold">confirm password</label>
+        <input type="password" name="confirmPassword" formControlName="confirmPassword" placeholder="confirm password"
+          class="form-control  inputWidth" [class.is-invalid]="confirmpassword?.invalid && confirmpassword?.touched">
+        <small [class.d-none]="confirmpassword?.untouched || confirmpassword?.valid" class="text-danger">confirm
+          password is required.</small>
+      </div>
+      <div formGroupName="address">
+        <div class="form-group mainLine">
+          <label class="bold">Adrress</label>
+          <input type="text" class="form-control inputWidth" placeholder="City" formControlName="city">
+        </div>
+        <div class="form-group mainLine">
+          <label class="bold">City</label>
+          <input type="text" class="form-control inputWidth" placeholder="State" formControlName="state">
+        </div>
+        <div class="form-group mainLine">
+          <label class="bold">Postal code</label>
+          <input type="integer" class="form-control inputWidth" placeholder="Postal code" formControlName="postalCode">
+        </div>
+
+      </div>
+      <div>
+        <button class="btn btn-primary" type="submit">
+          Singup
+        </button>
+        <button (click)="loadAPI()" class="btn btn-secondary ml-2">Load API</button>
+      </div>
+    </form>
+
+    <div class="mainLine">
+      {{registartionForm.value | json}}
+    </div>
+
   </div>
-  <div class="center">
-    <input type="text" name="userName" id="userName" placeholder="User Name">
-  </div>
+
+
 
 </main>
 

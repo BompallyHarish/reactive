@@ -1,13 +1,8 @@
 .mainLine {
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    box-sizing: inherit;
-    position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+}
+.bold{
+    font-weight: bold;
 }
 
 .center {   
@@ -20,4 +15,11 @@
     box-sizing: inherit;
     position: relative;
     margin-bottom: 20px;
+}
+.main{
+    background: lightblue;
+}
+
+.inputWidth{
+width: 15%;
 }
