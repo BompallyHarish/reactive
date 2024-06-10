@@ -21,19 +21,29 @@
         <label class="bold">Username</label>
         <input type="text" name="userName" formControlName="userName" placeholder="User Name"
           class="form-control  inputWidth" [class.is-invalid]="userName?.invalid &&  userName?.touched">
-        <small [class.d-none]="first['userName'].untouched || first['userName'].valid" class="text-danger">Username is
-          required.</small>
+        <div *ngIf="first['userName'].touched && first['userName'].invalid">
+          <small class="text-danger" *ngIf="first['userName'].errors.required">Username is required.</small>
+          <small class="text-danger" *ngIf="first['userName'].errors.minlength">minimum length of Username is
+            required. </small>
+          <small class="text-danger"
+            *ngIf="first['userName'].errors.forbiddenName">{{first['userName'].errors?.forbiddenName.value}} is not
+            allowed as user name. </small>
+
+        </div>
+
       </div>
 
       <div class="form-group mainLine">
         <label class="bold">Password</label>
-        <input type="password" name="Password" formControlName="Password" placeholder="Password"
+        <input type="text" name="Password" formControlName="Password" placeholder="Password"
           class="form-control  inputWidth" [class.is-invalid]="first['Password'].invalid &&  first['Password'].touched">
         <div *ngIf="first['Password'].invalid && first['Password'].touched">
           <small *ngIf="first['Password'].errors && first['Password'].errors.required" class="text-danger">Password is
             required.</small>
           <small *ngIf="first['Password'].errors && first['Password'].errors.minlength" class="text-danger">Min length
             is required</small>
+          <small *ngIf="first['Password'].errors && first['Password'].errors.forbiddenName" class="text-danger">
+            {{first['userName'].errors?.forbiddenName.value }} is not allowed. </small>
         </div>
 
       </div>
